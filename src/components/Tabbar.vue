@@ -5,6 +5,7 @@
 .m-tabbar{
     position: fixed;
     display: flex;
+    flex-direction: row;
     bottom: 0;
     left: 0;
     right: 0;
@@ -18,7 +19,12 @@
 <script>
 import mTabbarItem from './Tabbar-item'
 export default {
-    props:['value']
+    props: ['value'],
+    computed: {
+      value() {
+        return this.$route.matched[0].name
+      }
+    }
 }
 </script>
 

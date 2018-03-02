@@ -1,25 +1,43 @@
 <template>
-  <a class="m-tabbar-item" :class="{'is-active':isActive}" @click="$parent.$emit('input',id)">
+<!-- :class 可以动态绑定style 通过触发值绑定对应键上的css 具体可看浏览器渲染后的源码-->
+
+  <a class="m-tabbar-item" :class="{'is-active':isActive}"  @click="goToRouter">
       <span class="m-tabbar-item-icon" v-show="!isActive"><slot name="icon-normal"></slot></span>
       <span class="m-tabbar-item-icon" v-show="isActive"><slot name="icon-active"></slot></span>
-
       <span class="m-tabbar-item-text"><slot></slot></span>
   </a>
 </template>
 <script>
 export default {
-    props:['id'],
-    computed:{
+    props: {
+        	id:{
+        		type:String
+        	},
+        	isRouter:{
+        		type:Boolean,
+        		default:false
+        	}
+     },
+    computed: {
         isActive(){
-            if(this.$parent.value === this.id){
-                return true;
+            if(this.$parent.value===this.id){
+                 return true;
             }
+        }
+    },
+    methods:{
+        goToRouter(){
+        	this.$parent.$emit('input',this.id)
+        	if(this.isRouter){
+        		this.$router.push(this.id)
+        	}
         }
     }
 }
 </script>
 
 <style lang="less">
+@import '../less/var.less';
 .m-tabbar-item{
     flex: 1;
     text-align: center;
@@ -41,7 +59,7 @@ export default {
 } 
 &.is-active{
     .m-tabbar-item-text{
-       color: #42bd56;
+       color:@tabbarActiveColor;
      }
 }
 </style>
