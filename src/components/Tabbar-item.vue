@@ -9,28 +9,30 @@
 </template>
 <script>
 export default {
-    props: {
-        	id:{
-        		type:String
-        	},
-        	isRouter:{
-        		type:Boolean,
-        		default:false
-        	}
-     },
-    computed: {
+    props:{
+        id:{
+            type:String
+        },
+        isRouter:{
+            type:Boolean,
+            default:false
+        }
+    },
+    computed:{
         isActive(){
             if(this.$parent.value===this.id){
-                 return true;
+                return true;
             }
         }
     },
     methods:{
         goToRouter(){
-        	this.$parent.$emit('input',this.id)
-        	if(this.isRouter){
-        		this.$router.push(this.id)
-        	}
+            this.$parent.$emit('input',this.id)
+            //判断跳转
+            if(this.isRouter){
+                //根据id跳转
+                this.$router.push(this.id)
+            }
         }
     }
 }
