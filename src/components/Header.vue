@@ -41,6 +41,7 @@ export default {
     border-bottom:1px solid #eee;
     a{
         color: @headerDefaultColor;
+        text-decoration: none;
     }
     .m-header-button{
         width: 70px;

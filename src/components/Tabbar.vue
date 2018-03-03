@@ -17,7 +17,6 @@
 }
 </style>
 <script>
-import mTabbarItem from './Tabbar-item'
 export default {
     props: ['value'],
     computed: {
